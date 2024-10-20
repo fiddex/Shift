@@ -1,0 +1,22 @@
+import { Suspense } from 'react'
+import ShiftLog from '@/components/ShiftLog'
+import Auth from '@/components/Auth'
+import ErrorBoundary from '@/components/ErrorBoundary'
+
+export default function Home() {
+  return (
+    <main className="container mx-auto py-8">
+      <h1 className="text-3xl font-bold mb-8 text-center">Shift Handover System</h1>
+      <ErrorBoundary fallback={<div>Error loading authentication</div>}>
+        <Suspense fallback={<div>Loading authentication...</div>}>
+          <Auth />
+        </Suspense>
+      </ErrorBoundary>
+      <ErrorBoundary fallback={<div>Error loading shift log</div>}>
+        <Suspense fallback={<div>Loading shift log...</div>}>
+          <ShiftLog />
+        </Suspense>
+      </ErrorBoundary>
+    </main>
+  )
+}
